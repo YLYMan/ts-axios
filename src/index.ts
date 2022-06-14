@@ -3,16 +3,19 @@ import { AxiosRequestConfig } from "./types"
 import xhr from "./xhr";
 
 import { bulidURL } from "../helpers/url";
-import { transformReuquest } from "../helpers/data";
+import { transformRequest } from "../helpers/data";
+import { processHeaders } from "../helpers/header";
 
 function axios(config: AxiosRequestConfig): void {
 	processConfig(config)
+	console.log(config)
 	xhr(config)
 }
 
 function processConfig(config: AxiosRequestConfig): void {
 	config.url = transformUrl(config)
-	config.data = transformReuquestData(config)
+	config.headers = transformHeaders(config)
+	config.data = transformRequestData(config)
 }
 
 function transformUrl(config: AxiosRequestConfig): string {
@@ -20,9 +23,14 @@ function transformUrl(config: AxiosRequestConfig): string {
 	return bulidURL(url, params)
 }
 
-function transformReuquestData(config: AxiosRequestConfig): any {
-	return transformReuquest(config.data)
+function transformRequestData(config: AxiosRequestConfig): any {
+	return transformRequest(config.data)
 }
 
+function transformHeaders (config: AxiosRequestConfig) {
+  const { headers = {}, data } = config
+	console.log('config', config);
+  return processHeaders(headers, data)
+}
 
 export default axios
