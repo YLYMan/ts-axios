@@ -4,10 +4,10 @@
  * @Author: yanlingyun 1278259092@qq.com
  * @Date: 2022-06-13 17:08:23
  * @LastEditors: yanlingyun 1278259092@qq.com
- * @LastEditTime: 2022-06-14 09:56:00
+ * @LastEditTime: 2022-06-14 10:30:15
  */
 
-import { isDate, isObject } from './util'
+import { isDate, isPlainObject } from './util'
 
 function encode (val: string): string {
   return encodeURIComponent(val)
@@ -42,7 +42,9 @@ export function bulidURL (url: string, params?: any) {
     values.forEach((val) => {
       if (isDate(val)) {
         val = val.toISOString()
-      } else if (isObject(val)) {
+      }
+      // else if (isObject(val)) {
+      else if (isPlainObject(val)) {
         val = JSON.stringify(val)
       }
       parts.push(`${encode(key)}=${encode(val)}`)
