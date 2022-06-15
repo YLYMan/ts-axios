@@ -4,7 +4,7 @@
  * @Author: yanlingyun 1278259092@qq.com
  * @Date: 2022-06-13 17:08:23
  * @LastEditors: yanlingyun 1278259092@qq.com
- * @LastEditTime: 2022-06-14 10:30:15
+ * @LastEditTime: 2022-06-15 11:04:07
  */
 
 import { isDate, isPlainObject } from './util'
@@ -20,7 +20,7 @@ function encode (val: string): string {
     .replace(/%5D/gi, ']')
 }
 
-export function bulidURL (url: string, params?: any) {
+export function buildURL (url: string, params?: any) {
   if (!params) {
     return url
   }
