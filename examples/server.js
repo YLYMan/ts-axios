@@ -4,7 +4,7 @@
  * @Author: yanlingyun 1278259092@qq.com
  * @Date: 2022-06-13 15:45:38
  * @LastEditors: yanlingyun 1278259092@qq.com
- * @LastEditTime: 2022-06-15 11:01:23
+ * @LastEditTime: 2022-06-15 11:50:24
  */
 const express = require('express')
 const bodyParser = require('body-parser')
@@ -45,7 +45,6 @@ router.get('/base/get', function(req, res){
 })
 
 router.post('/base/post', function(req, res) {
-  console.log(req.body)
   res.json(req.body)
 })
 

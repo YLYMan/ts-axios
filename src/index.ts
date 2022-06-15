@@ -14,7 +14,6 @@ function axios(config: AxiosRequestConfig): AxiosPromise  {
 function processConfig(config: AxiosRequestConfig): void {
 	config.url = transformUrl(config)
 	config.headers = transformHeaders(config)
-	debugger
 	config.data = transformRequestData(config)
 }
 
@@ -29,7 +28,6 @@ function transformRequestData(config: AxiosRequestConfig): any {
 
 function transformHeaders (config: AxiosRequestConfig) {
   const { headers = {}, data } = config
-	console.log('config', config);
   return processHeaders(headers, data)
 }
 
