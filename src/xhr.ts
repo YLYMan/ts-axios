@@ -1,22 +1,6 @@
 import { AxiosRequestConfig, AxiosPromise, AxiosResponse  } from "./types";
 import { parseHeaders } from "./helpers/header";
-import { rejects } from "assert";
-// export default function xhr(config: AxiosRequestConfig): void {
-// 	const { data = null, url, method = 'get', headers } = config
-// 	const request = new XMLHttpRequest()
-// 	request.open(method.toUpperCase(), url, true)
-
-//   Object.keys(headers).forEach((name) => {
-// 		// 当我们传入的 data 为空的时候，请求 header 配置 Content-Type 是没有意义的，于是我们把它删除
-//     if (data === null && name.toLowerCase() === 'content-type') {
-//       delete headers[name]
-//     } else {
-//       request.setRequestHeader(name, headers[name])
-//     }
-//   })
-	
-// 	request.send(data)
-// }
+import { createError } from "./helpers/error";
 
 export default function xhr(config: AxiosRequestConfig): AxiosPromise {
 
@@ -57,11 +41,23 @@ export default function xhr(config: AxiosRequestConfig): AxiosPromise {
 		}
 
 		request.onerror = function handleError() {
-			reject(new Error('Network Error'))
+			// reject(new Error('Network Error'))
+			reject(createError(
+				'Network Error',
+				config,
+				null,
+				request
+			))
 		}
 
 		request.ontimeout = function heandleTimeout() {
-			reject(new Error(`Timeout of ${timeout} ms exceeded`))
+			// reject(new Error(`Timeout of ${timeout} ms exceeded`))
+			reject(createError(
+				`Timeout of ${timeout} ms exceeded`,
+				config,
+				'ECONNABORTED',
+				request
+			))
 		}
 
 		Object.keys(headers).forEach((name) => {
@@ -79,7 +75,14 @@ export default function xhr(config: AxiosRequestConfig): AxiosPromise {
 			if (response.status >= 200 && response.status < 300) {
 				resolve(response)
 			} else {
-				reject(new Error(`Request faild width status code ${response.status}`))
+				// reject(new Error(`Request faild width status code ${response.status}`))
+				reject(createError(
+					`Request faild width status code ${response.status}`,
+					config,
+					null,
+					request,
+					response
+				))
 			}
 		}
 	})
