@@ -4,7 +4,7 @@
  * @Author: yanlingyun 1278259092@qq.com
  * @Date: 2022-06-14 11:00:03
  * @LastEditors: yanlingyun 1278259092@qq.com
- * @LastEditTime: 2022-06-15 11:54:02
+ * @LastEditTime: 2022-06-15 14:23:21
  */
 import { isPlainObject } from "./util";
 
@@ -38,7 +38,7 @@ export function parseHeaders (headers: string): any {
     return parsed
   }
   headers.split('\r\n').forEach(line => {
-    console.log(line)
+    console.log(line)                                
     let [key, value] = line.split(':')
     key = key.trim().toLowerCase()
     if (!key) {
