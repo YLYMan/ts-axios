@@ -4,7 +4,7 @@
  * @Author: yanlingyun 1278259092@qq.com
  * @Date: 2022-06-13 17:07:47
  * @LastEditors: yanlingyun 1278259092@qq.com
- * @LastEditTime: 2022-06-15 11:03:53
+ * @LastEditTime: 2022-06-16 10:17:52
  */
 const toString = Object.prototype.toString
 
@@ -21,4 +21,12 @@ export function isDate (val: any): val is Date {
 // 而 isPlainObject 的判断方式，只有我们定义的普通 JSON 对象才能满足。
 export function isPlainObject(val: any): val is Object {
   return toString.call(val) === '[object Object]'
+}
+
+// 用到了交叉类型，并且用到了类型断言, 目的是把 from 里的属性都扩展到 to 中，包括原型上的属性。
+export function extend<T, U>(to: T, from: U): T & U {
+  for (const key in from) {
+    ;(to as T & U)[key] = from[key] as any
+  }
+  return to as T & U
 }

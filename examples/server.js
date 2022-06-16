@@ -4,7 +4,7 @@
  * @Author: yanlingyun 1278259092@qq.com
  * @Date: 2022-06-13 15:45:38
  * @LastEditors: yanlingyun 1278259092@qq.com
- * @LastEditTime: 2022-06-15 15:53:30
+ * @LastEditTime: 2022-06-16 10:42:28
  */
 const express = require('express')
 const bodyParser = require('body-parser')
@@ -79,6 +79,37 @@ router.get('/error/timeout', function(req, res) {
     })
   }, 3000);
 })
+
+router.get('/extend/get', function(req, res) {
+  res.json({
+    msg: 'hello world'
+  })
+})
+
+router.options('/extend/options', function(req, res) {
+  res.end()
+})
+
+router.delete('/extend/delete', function(req, res) {
+  res.end()
+})
+
+router.head('/extend/head', function(req, res) {
+  res.end()
+})
+
+router.post('/extend/post', function(req, res) {
+  res.json(req.body)
+})
+
+router.put('/extend/put', function(req, res) {
+  res.json(req.body)
+})
+
+router.patch('/extend/patch', function(req, res) {
+  res.json(req.body)
+})
+
 
 app.use(router)
 
