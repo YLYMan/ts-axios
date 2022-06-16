@@ -4,7 +4,7 @@
  * @Author: yanlingyun 1278259092@qq.com
  * @Date: 2022-06-13 15:45:38
  * @LastEditors: yanlingyun 1278259092@qq.com
- * @LastEditTime: 2022-06-16 10:42:28
+ * @LastEditTime: 2022-06-16 13:56:35
  */
 const express = require('express')
 const bodyParser = require('body-parser')
@@ -110,6 +110,16 @@ router.patch('/extend/patch', function(req, res) {
   res.json(req.body)
 })
 
+router.get('/extend/user', function(req, res) {
+  res.json({
+    code: 0,
+    message: 'ok',
+    result: {
+      name: 'jack',
+      age: 18
+    }
+  })
+})
 
 app.use(router)
 
