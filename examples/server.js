@@ -4,7 +4,7 @@
  * @Author: yanlingyun 1278259092@qq.com
  * @Date: 2022-06-13 15:45:38
  * @LastEditors: yanlingyun 1278259092@qq.com
- * @LastEditTime: 2022-06-16 13:56:35
+ * @LastEditTime: 2022-06-20 14:17:22
  */
 const express = require('express')
 const bodyParser = require('body-parser')
@@ -120,6 +120,11 @@ router.get('/extend/user', function(req, res) {
     }
   })
 })
+
+router.get('/interceptor/get', function(req, res) {
+  res.end('hello')
+})
+
 
 app.use(router)
 
