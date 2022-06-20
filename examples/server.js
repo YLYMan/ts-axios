@@ -4,7 +4,7 @@
  * @Author: yanlingyun 1278259092@qq.com
  * @Date: 2022-06-13 15:45:38
  * @LastEditors: yanlingyun 1278259092@qq.com
- * @LastEditTime: 2022-06-20 14:17:22
+ * @LastEditTime: 2022-06-20 16:24:16
  */
 const express = require('express')
 const bodyParser = require('body-parser')
@@ -125,6 +125,9 @@ router.get('/interceptor/get', function(req, res) {
   res.end('hello')
 })
 
+router.post('/config/post', function(req, res) {
+  res.json(req.body)
+})
 
 app.use(router)
 
